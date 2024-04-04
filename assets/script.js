@@ -41,6 +41,9 @@ arrowRight.addEventListener("click", function () {
 // Sélection bullet points
 const dots = document.querySelectorAll(".dot");
 
+// Premier point activé par défaut au chargement de la page
+dots[0].classList.add("dot_selected");
+
 // Ajout Event Listener à chaque bullet point
 dots.forEach((dot, index) => {
   dot.addEventListener("click", function () {
@@ -59,7 +62,7 @@ dots.forEach((dot, index) => {
     });
 
     // Ajouter la classe 'dot_selected' au point cliqué
-    this.classList.add("dot_selected");
+    dots[currentSlideIndex].classList.add("dot_selected");
   });
 });
 
@@ -113,4 +116,39 @@ function previousSlide() {
       dot.classList.add("dot_selected");
     }
   });
+}
+
+//////// Défilement infini
+
+// Gestion du clic sur la flèche droite
+function nextSlide() {
+  currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+  updateCarousel();
+}
+
+// Gestion du clic sur la flèche gauche
+
+function previousSlide() {
+  currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+  updateCarousel();
+}
+
+// Mise à jour de l'affichage du carrousel 
+function updateCarousel() {
+  // Mise à jour image
+  const bannerImg = document.querySelector('.banner-img');
+  bannerImg.src = `./assets/images/slideshow/${slides[currentSlideIndex].image}`;
+
+  // Mise à jour texte
+  const bannerText = document.querySelector('#banner p');
+  bannerText.innerHTML = slides[currentSlideIndex].tagLine;
+
+  // Supprimer la classe 'dot_selected' de tous les points
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((dot) => {
+    dot.classList.remove('dot_selected');
+  });
+
+  // Ajouter la classe 'dot_selected' au point correspondant à la diapositive actuelle
+  dots[currentSlideIndex].classList.add('dot_selected');
 }
