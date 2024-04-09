@@ -25,12 +25,11 @@ let currentSlideIndex = 0;
 
 //////// Flèches //////////
 
-// Ajout Event Listeners
-
 // Sélectionne l'élément HTML spécifique aux flèches
 const arrowLeft = document.querySelector("#banner .arrow_left");
 const arrowRight = document.querySelector("#banner .arrow_right");
 
+// Ajout des écouteurs d'événement
 // Clique flèche gauche = Activation diapositive précédente
 arrowLeft.addEventListener("click", previousSlide);
 
@@ -39,12 +38,10 @@ arrowRight.addEventListener("click", nextSlide);
 
 //////// Bullet points
 
-// Ajout Event Listener à chaque bullet point
-
-// Sélectionne élément HTML 
+// Sélectionne l'élément HTML spécifique aux bullet points
 const dots = document.querySelector(".dots");
 
-// Boucle qui parcourt chaque élément de la liste des slides
+// Ajout d'une boucle qui parcourt chaque élément de la liste des slides
 slides.forEach((_, index) => {
   // A chaque itération, un nouveau point
   const dot = document.createElement("div");
@@ -86,15 +83,15 @@ function nextSlide() {
   const newIndex = currentSlideIndex + 1;
   currentSlideIndex = newIndex > slides.length - 1 ? 0 : newIndex;
 
-  // Mise à jour image
+  // Mise à jour de l'image
   const bannerImg = document.querySelector(".banner-img");
   bannerImg.src = `./assets/images/slideshow/${slides[currentSlideIndex].image}`;
 
-  // Mise à jour texte
+  // Mise à jour du texte
   const bannerText = document.querySelector("#banner p");
   bannerText.innerHTML = slides[currentSlideIndex].tagLine;
 
-  // Mise à jour point actif
+  // Mise à jour du point actif
   const dots = document.querySelectorAll(".dot");
   dots.forEach((dot, index) => {
     dot.classList.remove("dot_selected");
@@ -106,7 +103,6 @@ function nextSlide() {
 
 // Pour afficher la diapositive précédente
 function previousSlide() {
-  console.log("Clic sur la flèche gauche");
   const newIndex = currentSlideIndex - 1;
   currentSlideIndex = newIndex < 0 ? 0 : newIndex;
 
@@ -118,7 +114,7 @@ function previousSlide() {
   const bannerText = document.querySelector("#banner p");
   bannerText.innerHTML = slides[currentSlideIndex].tagLine;
 
-  // Mise à jour dupoint actif
+  // Mise à jour du point actif
   const dots = document.querySelectorAll(".dot");
   dots.forEach((dot, index) => {
     dot.classList.remove("dot_selected");
