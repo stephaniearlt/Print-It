@@ -78,52 +78,6 @@ function updateSlide() {
   });
 }
 
-// Pour afficher la diapositive suivante
-function nextSlide() {
-  const newIndex = currentSlideIndex + 1;
-  currentSlideIndex = newIndex > slides.length - 1 ? 0 : newIndex;
-
-  // Mise à jour de l'image
-  const bannerImg = document.querySelector(".banner-img");
-  bannerImg.src = `./assets/images/slideshow/${slides[currentSlideIndex].image}`;
-
-  // Mise à jour du texte
-  const bannerText = document.querySelector("#banner p");
-  bannerText.innerHTML = slides[currentSlideIndex].tagLine;
-
-  // Mise à jour du point actif
-  const dots = document.querySelectorAll(".dot");
-  dots.forEach((dot, index) => {
-    dot.classList.remove("dot_selected");
-    if (index === currentSlideIndex) {
-      dot.classList.add("dot_selected");
-    }
-  });
-}
-
-// Pour afficher la diapositive précédente
-function previousSlide() {
-  const newIndex = currentSlideIndex - 1;
-  currentSlideIndex = newIndex < 0 ? 0 : newIndex;
-
-  // Mise à jour de l'image
-  const bannerImg = document.querySelector(".banner-img");
-  bannerImg.src = `./assets/images/slideshow/${slides[currentSlideIndex].image}`;
-
-  // Mise à jour du texte
-  const bannerText = document.querySelector("#banner p");
-  bannerText.innerHTML = slides[currentSlideIndex].tagLine;
-
-  // Mise à jour du point actif
-  const dots = document.querySelectorAll(".dot");
-  dots.forEach((dot, index) => {
-    dot.classList.remove("dot_selected");
-    if (index === currentSlideIndex) {
-      dot.classList.add("dot_selected");
-    }
-  });
-}
-
 //////// Défilement infini
 
 // Gestion du clic sur la flèche droite
